@@ -1,17 +1,16 @@
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.g.mapleader = " "
-vim.keymap.set("n","<leader>w",":w<CR>")
+vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set('n', '<leader>c', ':bdelete<CR>')
 vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>')
 vim.keymap.set('n', '<leader>sp', ':split<CR>')
-vim.keymap.set('n','<leader>Q',':q!<CR>')
-vim.cmd(":set guicursor+=n:hor20-Cursor/lCursor")
+vim.keymap.set('n', '<leader>Q', ':q!<CR>')
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true 
+vim.opt.expandtab = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 -- Function to move the current line up
@@ -29,4 +28,3 @@ vim.api.nvim_set_keymap('n', '<M-j>', ':lua move_line_down()<CR>', { noremap = t
 
 -- Map Alt + k to move the line up in Normal mode
 vim.api.nvim_set_keymap('n', '<M-k>', ':lua move_line_up()<CR>', { noremap = true, silent = true })
-
