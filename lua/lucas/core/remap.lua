@@ -7,6 +7,7 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>')
 vim.keymap.set('n', '<leader>sp', ':split<CR>')
 vim.keymap.set('n','<leader>Q',':q!<CR>')
+vim.cmd(":set guicursor+=n:hor20-Cursor/lCursor")
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
