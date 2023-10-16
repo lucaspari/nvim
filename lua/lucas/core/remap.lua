@@ -7,6 +7,12 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>')
 vim.keymap.set('n', '<leader>sp', ':split<CR>')
 vim.keymap.set('n','<leader>Q',':q!<CR>')
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true 
+vim.opt.incsearch = true
+vim.opt.termguicolors = true
 -- Function to move the current line up
 function move_line_up()
     vim.api.nvim_command("m-2")
@@ -23,4 +29,3 @@ vim.api.nvim_set_keymap('n', '<M-j>', ':lua move_line_down()<CR>', { noremap = t
 -- Map Alt + k to move the line up in Normal mode
 vim.api.nvim_set_keymap('n', '<M-k>', ':lua move_line_up()<CR>', { noremap = true, silent = true })
 
-print("deez nuts")

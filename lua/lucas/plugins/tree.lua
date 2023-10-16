@@ -24,6 +24,7 @@ return {
         require("nvim-tree").setup {
             on_attach = my_on_attach,
         }
-        vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n','<C-h>',':NvimTreeFocus<CR>',{ noremap = true, silent = true})
     end
 }
