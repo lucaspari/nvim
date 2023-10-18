@@ -14,17 +14,11 @@ vim.opt.expandtab = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 -- Function to move the current line up
-function move_line_up()
-    vim.api.nvim_command("m-2")
-end
+-- Normal mode mappings
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
 
--- Function to move the current line down
-function move_line_down()
-    vim.api.nvim_command("m+")
-end
+-- Visual mode mappings
+vim.api.nvim_set_keymap('x', '<A-j>', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', '<A-k>', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
 
--- Map Alt + j to move the line down in Normal mode
-vim.api.nvim_set_keymap('n', '<M-j>', ':lua move_line_down()<CR>', { noremap = true, silent = true })
-
--- Map Alt + k to move the line up in Normal mode
-vim.api.nvim_set_keymap('n', '<M-k>', ':lua move_line_up()<CR>', { noremap = true, silent = true })
