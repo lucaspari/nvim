@@ -7,6 +7,7 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set('n', '<leader>vs', ':vsplit<CR>')
 vim.keymap.set('n', '<leader>sp', ':split<CR>')
 vim.keymap.set('n', '<leader>Q', ':q!<CR>')
+vim.keymap.set('v','<C-c>', '"+y')
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
