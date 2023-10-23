@@ -21,6 +21,12 @@ return {
 		event = "InsertEnter",
 		dependencies = {
 			{ "L3MON4D3/LuaSnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "hrsh7th/nvim-cmp" },
+            {"hrsh7th/cmp-buffer"},
+
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
@@ -56,11 +62,11 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
+
 		config = function()
 			-- This is where all the LSP shenanigans will live
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
-
 			lsp_zero.on_attach(function(client, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
@@ -70,7 +76,10 @@ return {
 				})
 			end)
 			require("mason-lspconfig").setup({
-				ensure_installed = {},
+				ensure_installed = {
+					"lua_ls",
+					"tsserver",
+				},
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()
