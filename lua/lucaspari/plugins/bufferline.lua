@@ -12,6 +12,9 @@ return {
 					},
 				},
 			},
+			highlights = {
+				fill = { bg = "#24283b" }, -- Change the background color here
+			},
 		})
 	end,
 }
