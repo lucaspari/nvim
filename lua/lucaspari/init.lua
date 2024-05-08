@@ -1,6 +1,6 @@
 require("lucaspari.lazy")
+require("neodev").setup({})
 local lsp_zero = require("lsp-zero")
-
 lsp_zero.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 	vim.keymap.set("n", "gd", function()
@@ -23,27 +23,24 @@ lsp_zero.on_attach(function(client, bufnr)
 	end, opts)
 end)
 
--- here you can setup the language servers
-require("lspconfig").gopls.setup({})
 require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
+			completion = {
+				callSnippet = "Replace",
 			},
 		},
 	},
 })
-require("lspconfig").terraformls.setup({})
+-- here you can setup the language servers
+require("lspconfig").gopls.setup({})
+require("lspconfig").terraformls.setup({
+	filetypes = {
+		"terraform",
+		"terraform-vars",
+		"*.tf",
+	},
+})
 
 local cmp = require("cmp")
 
