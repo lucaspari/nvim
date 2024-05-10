@@ -22,6 +22,7 @@ lsp_zero.on_attach(function(client, bufnr)
 		vim.lsp.buf.rename()
 	end, opts)
 end)
+require("luasnip.loaders.from_vscode").lazy_load()
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = { "lua_ls", "gopls", "terraformls" },
@@ -31,23 +32,35 @@ require("mason-lspconfig").setup({
 		end,
 	},
 })
+require("lsp-zero").extend_cmp()
 local cmp = require("cmp")
-
+local cmp_action = require("lsp-zero").cmp_action()
+local cmp_format = require("lsp-zero").cmp_format({ details = true })
+require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup({
 	sources = {
 		{ name = "path" },
 		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 	},
 	mapping = cmp.mapping.preset.insert({
-		-- confirm completion
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
-		-- scroll up and down the documentation window
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		-- change suggestion
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-f>"] = cmp_action.luasnip_jump_forward(),
+		["<C-b>"] = cmp_action.luasnip_jump_backward(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-Space>"] = cmp.mapping.complete(),
 	}),
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	--- (Optional) Show source name in completion menu
+	formatting = cmp_format,
 })
