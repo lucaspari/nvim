@@ -11,6 +11,8 @@ return {
 		vim.keymap.set("n", "<leader>fg", builtin.git_files, {})
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+		vim.keymap.set("n", "<leader>tt",builtin.current_buffer_fuzzy_find , {})
+		vim.keymap.set("n", "<leader>cmd",builtin.commands, {})
 		require("telescope").setup({
 			defaults = {
 				-- Default configuration for telescope goes here:

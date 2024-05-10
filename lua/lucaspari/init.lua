@@ -22,26 +22,15 @@ lsp_zero.on_attach(function(client, bufnr)
 		vim.lsp.buf.rename()
 	end, opts)
 end)
-
-require("lspconfig").lua_ls.setup({
-	settings = {
-		Lua = {
-			completion = {
-				callSnippet = "Replace",
-			},
-		},
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = { "lua_ls", "gopls", "terraformls" },
+	handlers = {
+		function(server_name)
+			require("lspconfig")[server_name].setup({})
+		end,
 	},
 })
--- here you can setup the language servers
-require("lspconfig").gopls.setup({})
-require("lspconfig").terraformls.setup({
-	filetypes = {
-		"terraform",
-		"terraform-vars",
-		"*.tf",
-	},
-})
-
 local cmp = require("cmp")
 
 cmp.setup({
