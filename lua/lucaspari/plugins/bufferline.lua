@@ -6,6 +6,7 @@ return {
 		require("bufferline").setup({
 			options = {
 				diagnostics = "nvim_lsp",
+				separator_style = "slant",
 				offsets = {
 					{
 						filetype = "NvimTree",
@@ -13,7 +14,7 @@ return {
 				},
 			},
 			highlights = {
-				fill = { bg = "#24283b" }, -- Change the background color here
+				-- fill = { bg = "#24283b" }, -- Change the background color here
 			},
 		})
 	end,

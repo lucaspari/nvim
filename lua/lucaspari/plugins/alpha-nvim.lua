@@ -24,7 +24,6 @@ return {
 			"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
 			"                                                     ",
 		}
-
 		dashboard.section.buttons.val = {
 			dashboard.button("p", "  Find Project", ":Telescope projects <CR>"),
 			dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
