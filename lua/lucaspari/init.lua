@@ -1,5 +1,7 @@
 require("lucaspari.lazy")
 require("neodev").setup({})
+local ih = require("lsp-inlayhints")
+ih.setup()
 local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
@@ -28,7 +30,20 @@ require("mason-lspconfig").setup({
 	ensure_installed = { "lua_ls", "gopls", "terraformls" },
 	handlers = {
 		function(server_name)
-			require("lspconfig")[server_name].setup({})
+			require("lspconfig")[server_name].setup({
+				on_attach = function(client, bufnr)
+					ih.on_attach(client, bufnr)
+				end,
+				settings = {
+					gopls = {
+						["ui.inlayhint.hints"] = {
+							compositeLiteralFields = true,
+							constantValues = true,
+							parameterNames = true,
+						},
+					},
+				},
+			})
 		end,
 	},
 })
