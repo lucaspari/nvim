@@ -80,3 +80,6 @@ cmp.setup({
 	--- (Optional) Show source name in completion menu
 	formatting = cmp_format,
 })
+vim.diagnostic.config({
+	update_in_insert = true,
+})
